@@ -22,3 +22,10 @@ install(
 install(
         DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/include/
         DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/)
+
+if(BUILD_TESTS)
+    find_package(Catch2)
+
+    add_executable(test test/main.cpp)
+    target_link_libraries(test MaybeError Catch2::Catch2)
+endif()
