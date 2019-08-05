@@ -15,7 +15,8 @@ namespace alx
 
     namespace detail {
         template<typename, template<typename...> typename Pattern, typename... Args>
-        struct IllFormed {
+        struct IllFormed
+        {
             constexpr static bool value = false;
         };
 
@@ -23,14 +24,13 @@ namespace alx
         using void_t = void;
 
         template<template<typename...> typename Pattern, typename... Args>
-        struct IllFormed<void_t<Pattern<Args...>>, Pattern, Args...> {
+        struct IllFormed<void_t<Pattern<Args...>>, Pattern, Args...>
+        {
             constexpr static bool value = true;
         };
 
         template<template<typename...> typename Pattern, typename... Args>
-        struct Detect : public detail::IllFormed<void, Pattern, Args...> {
-        };
-
+        struct Detect : public detail::IllFormed<void, Pattern, Args...> {};
     }
 
 template<typename ErrorType>
